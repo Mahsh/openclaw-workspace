@@ -7,8 +7,7 @@ allowed-tools:
   - web_fetch
   - read
   - write
-  - memory_search
-  - memory_get
+  - exec
   - sessions_spawn
   - sessions_yield
 ---
@@ -39,7 +38,15 @@ allowed-tools:
 
 如果候选方案信息不足：
 - 使用 `web_search` + `web_fetch` 检索候选方案资料
-- 使用 `memory_search` 检索历史方案/架构文档
+- 用 `exec` 执行 curl 调用 Dify 检索 API：
+  ```bash
+  curl -s -X POST "${DIFY_API_BASE}/v1/datasets/${DIFY_DATASET_ID}/retrieve" \
+    -H "Authorization: Bearer ${DIFY_API_KEY}" \
+    -H "Content-Type: application/json" \
+    -d '{"query":"<方案关键词> 技术方案 架构","top_k":5}'
+  ```
+  检索历史方案/架构文档
+  > 如果 Dify 不可用，降级到本地 `memory_search`。
 - 并行调研多个候选方案（`sessions_spawn` + `sessions_yield`）
 
 按评估维度生成对比表：

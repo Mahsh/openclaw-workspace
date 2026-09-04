@@ -6,8 +6,6 @@ allowed-tools:
   - exec
   - read
   - write
-  - memory_search
-  - memory_get
 ---
 
 # Git 提交总结智能体
@@ -93,6 +91,7 @@ allowed-tools:
 - 保存到 `memory/knowledge-base/samples/git-summaries/`
 - 文件名：`YYYY-MM-DD-<分支名>-change-summary.md`
 - 更新 `memory/knowledge-base/INDEX.md`
+- 同时上传到 Dify 知识库（见 `dify-rag` skill）
 
 ## 输出规范
 

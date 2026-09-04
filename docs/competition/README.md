@@ -39,39 +39,40 @@
 ### 4.1 技术调研智能体（tech-research）
 
 - **能力**：单点深度调研、多点并行调研、技术雷达定时扫描
-- **工具**：`web_search`、`web_fetch`、`sessions_spawn`、`sessions_yield`、`write`
-- **输出**：结构化 Markdown 调研报告，归档到 `memory/research/`
-- **亮点**：子 Agent 并行、技术雷达自动化、与云手机场景深度绑定
+- **工具**：`web_search`、`web_fetch`、`sessions_spawn`、`sessions_yield`、`exec`（Dify RAG 检索）、`write`
+- **输出**：结构化 Markdown 调研报告，归档到 `memory/research/` 并同步到 Dify 知识库
+- **亮点**：子 Agent 并行、技术雷达自动化、与云手机场景深度绑定、Dify RAG 共享知识库
 
 ### 4.2 需求文档生成智能体（prd-generator）
 
 - **能力**：输入需求要点，输出标准 PRD；支持变更追踪和历史 PRD 检索
-- **工具**：`memory_search`、`write`、`read`
-- **输出**：PRD Markdown，归档到 `memory/knowledge-base/samples/prd/`
-- **亮点**：RAG 保证术语和格式一致，支持 diff 对比
+- **工具**：`exec`（Dify RAG 检索）、`write`、`read`
+- **输出**：PRD Markdown，归档到 `memory/knowledge-base/samples/prd/` 并同步到 Dify
+- **亮点**：RAG 保证术语和格式一致，支持 diff 对比、跨实例共享
 
 ### 4.3 技术方案 + 评审辅助（tech-doc）
 
 - **能力**：技术选型对比、架构图生成、评审检查清单
-- **工具**：`web_search`、`memory_search`、`sessions_spawn`、`write`
-- **输出**：技术方案文档，归档到 `memory/knowledge-base/samples/tech-docs/`
+- **工具**：`web_search`、`exec`（Dify RAG 检索）、`sessions_spawn`、`write`
+- **输出**：技术方案文档，归档到 `memory/knowledge-base/samples/tech-docs/` 并同步到 Dify
 - **亮点**：自动生成 Mermaid 架构图、可执行评审清单
 
 ### 4.4 代码提交总结（git-summary）
 
 - **能力**：分析 git diff，输出结构化变更总结、影响面分层、风险提示
-- **工具**：`exec`、`write`、`memory_search`
-- **输出**：变更总结文档，归档到 `memory/knowledge-base/samples/git-summaries/`
+- **工具**：`exec`（git + Dify RAG 上传）、`write`
+- **输出**：变更总结文档，归档到 `memory/knowledge-base/samples/git-summaries/` 并同步到 Dify
 - **亮点**：协议/业务/配置/基础设施分层识别，支持批量多分支汇总
 
 ## 五、Skill 清单与目录
 
 | Skill | 目录 | 说明 |
 |-------|------|------|
-| `tech-research` | `workspace/skills/tech-research/` | 已有，本课题增强并作为核心亮点 |
-| `prd-generator` | `workspace/skills/prd-generator/` | 新增，PRD 自动生成与变更追踪 |
-| `tech-doc` | `workspace/skills/tech-doc/` | 新增，技术方案与评审辅助 |
-| `git-summary` | `workspace/skills/git-summary/` | 新增，Git 变更总结 |
+| `tech-research` | `workspace/skills/tech-research/` | 技术调研 + 并行子 Agent + 技术雷达 |
+| `prd-generator` | `workspace/skills/prd-generator/` | PRD 自动生成与变更追踪 |
+| `tech-doc` | `workspace/skills/tech-doc/` | 技术方案与评审辅助 |
+| `git-summary` | `workspace/skills/git-summary/` | Git 变更总结 |
+| `dify-rag` | `workspace/skills/dify-rag/` | **Dify.AI 线上 RAG，跨 OpenClaw 实例共享知识库** |
 
 ## 六、知识库与 RAG
 
@@ -81,7 +82,9 @@
 - **架构文档**：云手机整体架构、模块交互
 - **历史方案**：过往技术调研、PRD、技术方案、变更总结
 
-Agent 通过 `memory_search` 检索知识库，确保输出与组织规范一致。
+Agent 通过 `dify-rag` skill 调用 Dify.ai 检索 API，确保输出与组织规范一致。
+
+**跨实例共享**：多个 OpenClaw 实例（如团队成员各自的环境）可同时连接同一个 Dify 知识库，检索结果一致，无需各自维护本地索引。
 
 ## 七、自动化调度
 
@@ -95,8 +98,8 @@ Agent 通过 `memory_search` 检索知识库，确保输出与组织规范一致
 ## 八、创新点
 
 1. **多 Agent 协同**：调研、文档、代码三类 Agent 通过 `sessions_spawn` + `sessions_yield` 协同工作
-2. **RAG 私有知识库**：将云手机协议、架构、历史方案沉淀为知识库，提升输出一致性与专业性
-3. **Skill 体系化**：自研 4 个 Skill 覆盖研发全生命周期
+2. **Dify.AI 线上 RAG 知识库**：将云手机协议、架构、历史方案沉淀为 Dify 知识库，多个 OpenClaw 实例共享同一知识库，提升输出一致性与专业性
+3. **Skill 体系化**：自研 5 个 Skill 覆盖研发全生命周期（含 Dify RAG 集成层）
 4. **Cron 自动化**：定时技术雷达和每日复盘，实现"无人值守"的研发信息流动
 5. **可落地、可演示**：所有 Skill 均有明确目录、模板、样例，可直接运行
 
@@ -108,10 +111,11 @@ workspace/
 │   ├── README.md                  # 本文件
 │   └── architecture.md            # 架构详解
 ├── skills/
-│   ├── tech-research/             # 技术调研 Skill（已有+增强）
-│   ├── prd-generator/             # PRD 生成 Skill（新增）
-│   ├── tech-doc/                  # 技术方案 Skill（新增）
-│   └── git-summary/               # Git 总结 Skill（新增）
+│   ├── tech-research/             # 技术调研 Skill
+│   ├── prd-generator/             # PRD 生成 Skill
+│   ├── tech-doc/                  # 技术方案 Skill
+│   ├── git-summary/               # Git 总结 Skill
+│   └── dify-rag/                  # Dify.AI RAG 集成 Skill（跨实例共享）
 ├── memory/
 │   ├── knowledge-base/            # RAG 私有知识库
 │   │   ├── cloud-phone/           # 领域知识

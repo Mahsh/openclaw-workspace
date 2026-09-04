@@ -7,8 +7,7 @@ allowed-tools:
   - web_fetch
   - read
   - write
-  - memory_search
-  - memory_get
+  - exec
 ---
 
 # PRD 生成智能体
@@ -36,10 +35,19 @@ allowed-tools:
 
 ### 2. 检索历史 PRD（RAG）
 
-使用 `memory_search` 在 `memory/knowledge-base/cloud-phone/` 中查找：
+用 `exec` 执行 curl 调用 Dify 检索 API：
+```bash
+curl -s -X POST "${DIFY_API_BASE}/v1/datasets/${DIFY_DATASET_ID}/retrieve" \
+  -H "Authorization: Bearer ${DIFY_API_KEY}" \
+  -H "Content-Type: application/json" \
+  -d '{"query":"<模块关键词> PRD 需求文档","top_k":5}'
+```
+检索：
 - 同类型/同模块的历史 PRD
 - 云手机术语与规范（协议、架构、命名）
 - 相似功能的风险点与验收标准
+
+> 如果 Dify 不可用，降级到本地 `memory_search`。
 
 ### 3. 生成 PRD
 

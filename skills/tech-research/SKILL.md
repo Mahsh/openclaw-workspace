@@ -9,6 +9,7 @@ allowed-tools:
   - sessions_yield
   - write
   - read
+  - exec
 ---
 
 # 技术调研智能体
@@ -32,18 +33,30 @@ allowed-tools:
    - 提取用户的核心问题（如"WebRTC QoS降档方案"）
    - 拆分为 2-3 个子问题（现状、方案对比、落地建议）
 
-2. **多维度检索**
+2. **检索知识库（Dify RAG）**
+   - 用 `exec` 执行 curl 调用 Dify 检索 API：
+     ```bash
+     curl -s -X POST "${DIFY_API_BASE}/v1/datasets/${DIFY_DATASET_ID}/retrieve" \
+       -H "Authorization: Bearer ${DIFY_API_KEY}" \
+       -H "Content-Type: application/json" \
+       -d '{"query":"<调研关键词>","top_k":5,"score_threshold":0.5}'
+     ```
+   - 解析返回 JSON 中 `records[].content`，提取历史方案、术语规范、架构文档
+   - 如果 Dify 不可用，降级到本地 `memory_search`
+
+3. **多维度检索**
    - 用 `web_search` 搜索中英文资料（各 3-5 条）
    - 用 `web_fetch` 抓取高质量页面内容
    - 优先选择：官方文档、技术博客、GitHub README、论文
 
-3. **整理报告**
+4. **整理报告**
    - 按模板结构输出（见 `scripts/report_template.md`）
    - 包含：背景、技术原理、方案对比、优缺点、落地建议、参考资料
 
-4. **归档**
+5. **归档**
    - 保存到 `memory/research/` 目录，文件名格式：`YYYY-MM-DD-<关键词>.md`
    - 更新 `memory/research/INDEX.md` 索引
+   - 同时上传到 Dify 知识库（见 `dify-rag` skill）
 
 ### 模式二：多点并行调研
 
@@ -53,19 +66,19 @@ allowed-tools:
    - 将用户问题拆分为 2-4 个独立子调研
    - 每个子调研明确：关键词、检索方向、预期产出
 
-2. **并行启动子Agent**
+3. **并行启动子Agent**
    - 用 `sessions_spawn` 为每个子调研启动一个子Agent
    - 每个子Agent任务描述要具体，包含：
      - 调研关键词
      - 需要回答的子问题（2-3个）
      - 输出格式要求
 
-3. **等待并汇总**
+4. **等待并汇总**
    - 用 `sessions_yield` 等待所有子Agent完成
    - 收到结果后，整合为一份完整报告
    - 补充跨子调研的关联分析和综合建议
 
-4. **归档**
+5. **归档**
    - 同模式一
 
 ### 模式三：技术雷达（定时触发）

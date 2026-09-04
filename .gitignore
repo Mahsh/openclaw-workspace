@@ -1,0 +1,56 @@
+# ============================================================
+# OpenClaw Workspace .gitignore
+# 只同步 Skill 代码和公共知识库；排除配置、会话、本地存储
+# ============================================================
+
+# ==========================================
+# 🔴 配置与密钥（绝对不同步）
+# ==========================================
+openclaw.json
+openclaw.json.clobbered.*
+openclaw.json.last-good
+exec-approvals.json
+gateway-supervisor-restart-handoff.json
+update-check.json
+agents/main/agent/openclaw-agent.sqlite*
+agents/main/agent/models.json
+
+# ==========================================
+# 🔴 会话历史（每人独立，不同步）
+# ==========================================
+agents/*/sessions/*.jsonl
+agents/*/sessions/*.trajectory*
+agents/*/sessions/*.lock
+agents/*/sessions/.usage-cost-cache.json
+
+# ==========================================
+# 🔴 本地状态与缓存
+# ==========================================
+openclaw-workspace-state.json
+logs/
+media/
+state/
+workspace-attestations/
+
+# ==========================================
+# 🔴 Node 设备绑定（每人不同）
+# ==========================================
+devices/
+identity/
+browser/
+npm/
+
+# ==========================================
+# 🟡 个人日记性质，不同步
+# ==========================================
+memory/2026-*.md          # 每日复盘笔记
+memory/tasks.json         # 任务列表
+
+# ==========================================
+# 🟢 明确要同步的（不在 .gitignore = 自动提交）
+# ==========================================
+# skills/              (全部 Skill 定义)
+# docs/                (竞赛文档)
+# memory/knowledge-base/ (知识库骨架 + 索引)
+# competition-entries.md
+# patent/              (专利相关)

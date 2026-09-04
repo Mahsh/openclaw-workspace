@@ -6,6 +6,7 @@
 
 | 日期 | 主题 | 文件 | 模式 | 大小 |
 |------|------|------|------|------|
+| 2026-09-04 | 云手机场景下 WebRTC 弱网自适应与 QoS 降档方案 | [2026-09-04-webrtc-qos-cloud-phone-demo.md](2026-09-04-webrtc-qos-cloud-phone-demo.md) | 单点调研 | 2.9 KB |
 | 2026-08-12 | 云应用技术方案与可改进点分析 | [cloud-app-tech-route.md](2026-08-12-cloud-app-tech-route.md) | 单点调研 | 7.4 KB |
 | 2026-07-30 | 当前云手机厂商主要应用场景/玩法与技术路线 | [cloud-phone-scenarios-tech-routes.md](2026-07-30-cloud-phone-scenarios-tech-routes.md) | 单点调研 | 8.3 KB |
 | 2026-07-01 | WebRTC QoS 降档方案 | [webrtc-qos-degradation.md](2026-07-01-webrtc-qos-degradation.md) | 并行调研 | 15.8 KB |

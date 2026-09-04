@@ -14,8 +14,11 @@
 | 文件 | 类型 | 日期 |
 |------|------|------|
 | samples/prd/cloud-app-install-monitor-prd.md | PRD 样例 | 2026-08-30 |
+| samples/prd/2026-09-04-cloud-phone-weak-network-adaptive-prd.md | PRD 样例（Demo） | 2026-09-04 |
 | samples/tech-docs/cloud-phone-media-gateway-tech-doc.md | 技术方案样例 | 2026-08-30 |
+| samples/tech-docs/2026-09-04-cloud-phone-weak-network-tech-doc.md | 技术方案样例（Demo） | 2026-09-04 |
 | samples/git-summaries/feature-cloud-app-crash-fix-summary.md | 变更总结样例 | 2026-08-30 |
+| samples/git-summaries/feature-openclaw-cloud-phone-workflow-summary.md | 变更总结样例（Demo） | 2026-09-04 |
 
 ## 调研报告
 

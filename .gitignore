@@ -54,3 +54,7 @@ memory/tasks.json         # 任务列表
 # memory/knowledge-base/ (知识库骨架 + 索引)
 # competition-entries.md
 # patent/              (专利相关)
+
+# 本地个人配置（含 API Key / 任务状态），不同步
+TOOLS.md
+

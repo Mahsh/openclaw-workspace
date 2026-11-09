@@ -11,7 +11,7 @@
 - 按 `filter_rules` 过滤，保留与云手机/音视频/低延迟相关的有价值内容
 - 生成周报：`memory/research/tech-radar-YYYY-MM-DD.md`
 - 更新 `memory/research/INDEX.md`
-- 上次扫描：2026-07-01（已生成 tech-radar-2026-07-01.md）
+- 上次扫描：2026-11-09（已生成 tech-radar-2026-11-09.md；注意：Google 系站点直连被阻断，已用 GitHub API 替代扫描，待网络恢复补扫博客源）
 
 ---
 

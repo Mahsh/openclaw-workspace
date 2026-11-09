@@ -1,0 +1,9 @@
+{
+  "lastChecks": {
+    "techRadar": "2026-11-09T15:10:00+08:00",
+    "email": null,
+    "calendar": null,
+    "weather": null
+  },
+  "notes": "techRadar 补跑完成，Google 系站点直连被阻断，已用 GitHub API 替代；17:44 工作区误删事故已恢复"
+}

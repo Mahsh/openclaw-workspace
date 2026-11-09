@@ -1,6 +1,6 @@
 # 📚 技术调研归档索引
 
-> 最后更新：2026-08-12
+> 最后更新：2026-11-09
 
 ## 调研报告
 
@@ -17,6 +17,7 @@
 
 | 日期 | 文件 | 关键发现 |
 |------|------|----------|
+| 2026-11-09 | [tech-radar-2026-11-09.md](tech-radar-2026-11-09.md) | SCReAMv2 默认参数调整、SFrame 安全帧异步化入 Chromium、Waydroid+Sunshine 开源云游戏链路（Google 系站点直连受阻，经 GitHub API 替代扫描） |
 | 2026-07-01 | [tech-radar-2026-07-01.md](tech-radar-2026-07-01.md) | QUIC Multipath 即将标准化、QUIC 部分可靠交付、Opus 1.6.1 发布 |
 
 ## 其他文档

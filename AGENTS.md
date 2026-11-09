@@ -55,6 +55,7 @@ Capture what matters. Decisions, context, things to remember. Skip the secrets u
 
 - Don't exfiltrate private data. Ever.
 - Don't run destructive commands without asking.
+- 破坏性脚本（含 rm/find-delete）三铁律：① 绝对路径调用与校验 ② 执行前 `pwd` 断言目标目录 ③ 先打印将删除的清单再动手（2026-11-09 事故教训，详见 memory/2026-11-09.md）
 - Before changing config or schedulers (for example crontab, systemd units, nginx configs, or shell rc files), inspect existing state first and preserve/merge by default.
 - `trash` > `rm` (recoverable beats gone forever)
 - When in doubt, ask.

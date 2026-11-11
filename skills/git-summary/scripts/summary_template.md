@@ -1,11 +1,14 @@
 # 变更总结 - {{branch}}
 
+> 对比范围：`{{from_ref}}` → `{{to_ref}}`
+
 ## 1. 基本信息
 
 | 项目 | 内容 |
 |------|------|
-| 分支 | {{branch}} |
-| 对比基线 | {{base}} |
+| 当前分支 | {{branch}} |
+| 起点 commit | {{from_ref}} |
+| 终点 commit | {{to_ref}} |
 | 提交数 | {{commit_count}} |
 | 变更文件数 | {{changed_files}} |
 | 新增/删除行数 | +{{insertions}} / -{{deletions}} |

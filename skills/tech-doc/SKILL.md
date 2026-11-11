@@ -74,9 +74,10 @@ allowed-tools:
 
 ### 5. 归档
 
-- 保存到 `memory/knowledge-base/samples/tech-docs/`
+- 保存到 `sync_files/tech-doc/`（GitHub 同步目录，PC 与移动端双向可见；目录不存在时回退 `memory/knowledge-base/samples/tech-docs/`）
 - 文件名：`YYYY-MM-DD-<方案名>-tech-doc.md`
-- 更新 `memory/knowledge-base/INDEX.md`
+- 若 `memory/knowledge-base/INDEX.md` 存在，更新索引
+- **不自动上传 Dify 知识库**：入库由用户在 Dify 控制台手动完成
 
 ## 输出规范
 
